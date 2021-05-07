@@ -29,13 +29,14 @@
                   <span class="sp-color">تسجيل الدخول</span>
                   <h2>تسجيل الدخول إلى حسابك!</h2>
                 </div>
-                <form id="contactForm">
+                <form   id="pLoginFrm">
                   <div class="row">
                     <div class="col-lg-12 ">
                       <div class="form-group">
                         <input
                           type="text"
-                          name="name"
+                          name="email"
+                          v-model="email"
                           id="name"
                           class="form-control"
                           required
@@ -51,6 +52,7 @@
                           class="form-control"
                           type="password"
                           name="password"
+                          v-model="password"
                           placeholder="Password"
                         />
                       </div>
@@ -73,7 +75,7 @@
 
                     <div class="col-lg-12 col-md-12 text-center">
                       <button
-                        type="submit"
+                        type="submit" @click="handleSubmit"
                         class="default-btn btn-bg-three border-radius-5"
                       >
                         تسجيل الدخول الان
@@ -107,9 +109,32 @@ export default {
     Navbar
   },
   data() {
-    return {};
+    return {
+      email: "",
+      password: ""
+    };
+
   },
-  methods: {}
+  methods: {
+    handleSubmit(e){
+      e.preventDefault()
+      if (this.password.length > 0) {
+        this.$http.post('https://vsa.2bill.net/api/users/auth/login', {
+            email: this.email,
+            password: this.password
+        })
+        .then(response => {
+          this.$router.push("/")
+          console.log(response.data.token);
+          console.log(response.data.user.id);
+        })
+        .catch(function (error) {
+            console.error(error.response);
+        });
+      }
+    }
+
+  }
 };
 </script>
 

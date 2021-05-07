@@ -29,13 +29,14 @@
                   <span class="sp-color">إنشاء حساب</span>
                   <h2>انشئ حساب جديد!</h2>
                 </div>
-                <form id="contactForm">
+                <form id="pRegisterFrm">
                   <div class="row">
                     <div class="col-lg-12 ">
                       <div class="form-group">
                         <input
                           type="text"
                           name="name"
+                          v-model="name"
                           id="name"
                           class="form-control"
                           required
@@ -50,6 +51,7 @@
                         <input
                           type="email"
                           name="email"
+                          v-model="email"
                           id="email"
                           class="form-control"
                           required
@@ -65,7 +67,38 @@
                           class="form-control"
                           type="password"
                           name="password"
+                          v-model="password"
                           placeholder="Password"
+                        />
+                      </div>
+                    </div>
+
+                     <div class="col-lg-12 ">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="mobile"
+                          v-model="mobile"
+                          id="mobile"
+                          class="form-control"
+                          required
+                          data-error="Please enter your mobile"
+                          placeholder="mobile"
+                        />
+                      </div>
+                    </div>
+
+                     <div class="col-lg-12 ">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="address"
+                          v-model="address"
+                          id="address"
+                          class="form-control"
+                          required
+                          data-error="Please enter your address"
+                          placeholder="address"
                         />
                       </div>
                     </div>
@@ -73,6 +106,7 @@
                     <div class="col-lg-12 col-md-12 text-center">
                       <button
                         type="submit"
+                        @click="handleSubmit"
                         class="default-btn btn-bg-three border-radius-5"
                       >
                         انشئ حساب جديد الان
@@ -106,9 +140,37 @@ export default {
     Navbar
   },
   data() {
-    return {};
+    return {
+      name : "",
+      email : "",
+      password : "",
+      mobile : "",
+      address : "",
+    };
   },
-  methods: {}
+  methods : {
+    handleSubmit(e) {
+        e.preventDefault()
+
+        if (this.password.length > 0)
+        {
+            let url = "https://vsa.2bill.net/api/users/auth/signup"
+            this.$http.post(url, {
+                name: this.name,
+                email: this.email,
+                password: this.password,
+                mobile: this.mobile,
+                address: this.address
+            })
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+        } 
+    }
+  }
 };
 </script>
 

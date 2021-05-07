@@ -1,8 +1,10 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
+import userStore from "./store/user.js";
+import axios from 'axios'
 // ***********************************************
+Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 // ***********************************************
 // Css Files
@@ -24,17 +26,6 @@ import "./assets/css/rtl.css";
 import "jquery/dist/jquery.slim.min.js";
 import "@popperjs/core/dist/umd/popper.min.js";
 import "bootstrap/dist/js/bootstrap.min.js";
-// import 'owl-carousel/owl-carousel/owl.carousel.min.js';
-// import "magnific-popup/dist/jquery.magnific-popup.min.js";
-// import "owl.carousel/dist/owl.carousel.min.js";
-// import "jquery-nice-select/js/jquery.nice-select.min.js";
-// import "wowjs/dist/wow.min.js";
-// import "jquery-ui/external/jquery-1.12.1/jquery.js";
-// import "mmenu-js/dist/mmenu.js";
-// import "ajaxchimp/jquery.ajaxchimp.min.js";
-// import "validator/validator.min.js";
-// import "./assets/js/contact-form-script.js";
-// import "./assets/js/custom";
 // ***********************************************
 // Language
 import i18n from "./i18n";
@@ -42,10 +33,10 @@ import FlagIcon from "vue-flag-icon";
 Vue.use(FlagIcon);
 // ***********************************************
 new Vue({
-  router,
-  store,
-  i18n,
-  render: function(h) {
-    return h(App);
-  }
+    router,
+    userStore,
+    i18n,
+    render: function(h) {
+        return h(App);
+    }
 }).$mount("#app");
