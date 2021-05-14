@@ -124,9 +124,18 @@ export default {
             password: this.password
         })
         .then(response => {
-          this.$router.push("/")
-          console.log(response.data.token);
-          console.log(response.data.user.id);
+          const personToken = response.data.token;
+          const personId = response.data.user.id;
+          const personName = response.data.user.name;
+          const personUser = response.data.user;
+          localStorage.setItem("personToken", personToken);
+          localStorage.setItem("personId", personId);
+          localStorage.setItem("personUser", personUser);
+          localStorage.setItem("personName", personName);
+          console.log(personToken);
+          console.log(personName);
+          this.$router.push("/person/home")
+          
         })
         .catch(function (error) {
             console.error(error.response);

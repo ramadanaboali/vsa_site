@@ -858,6 +858,8 @@ Navbar Area
     top: -2px;
     z-index: 55555;
     position: relative;
+    display: inline-block;
+    margin: 0 0.5rem;
 }
 
 .option-item .language-list .language-list-dropdown {
@@ -1523,7 +1525,7 @@ Inner Banner
 }
 
 .inner-bg3 {
-    /* background-image: url(../img/inner-banner/inner-banner3.jpg); */
+    background-image: url(../img/inner-banner/inner-banner3.jpg);
 }
 
 .inner-bg4 {
@@ -2886,7 +2888,7 @@ Room Area
     display: block;
 }
 
-.room-item a img {
+.room-item img {
     border-radius: 15px;
 }
 

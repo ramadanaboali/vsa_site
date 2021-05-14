@@ -81,8 +81,7 @@
           <div class="col-lg-8 col-md-8">
             <div class="copy-right-text text-align1">
               <p>
-                Copyright @2020 Visitor SA. All Rights Reserved, Developed by
-                <a href="https://adology.com/" target="_blank">AdologySystem</a>
+                Copyright @2021 Visitor SA. All Rights Reserved.
               </p>
             </div>
           </div>
