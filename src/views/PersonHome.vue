@@ -26,16 +26,13 @@
                             <a href="#">الفنادق</a>
                         </li>
                         <li class="">
-                            <a href="#">Conference</a>
+                            <a href="#">السيارات</a>
                         </li>
                         <li class="">
-                            <a href="#">Resort Reserve</a>
+                            <a href="#">القطارات</a>
                         </li>
                         <li class="">
-                            <a href="#">Weeding Hall</a>
-                        </li>
-                        <li class="">
-                            <a href="#">Community Center</a>
+                            <a href="#">الطيران</a>
                         </li>
                     </ul>
                     <div class="tab_content current active pt-45">
@@ -99,7 +96,127 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <!-- Cars -->
+                        <div class="tabs_item" style="">
+                            <div class="reservation-tab-item">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="side-bar-form">
+                                            <h3>ابحث</h3>
+                                            <form>
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>اختر المدينة</label>
+                                                            <select v-model="citySelected"  class="form-control" >
+                                                                <option v-for="(cityItem, index) in cityItems" :key="index" v-bind:value="cityItem.id">{{ cityItem.name }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <button type="submit" @click="carSearchSubmit"
+                                                            class="default-btn btn-bg-three border-radius-5">
+                                                            ابحث الان
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="reservation-widget-content">
+                                            <h2>نتائج البحث</h2>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6" v-for="(carItem, index) in carItems" :key="index">
+                                                    <div class="room-item reservation-room">
+                                                        <!-- <img :src="carImg.photo" alt="Images"> -->
+                                                        <div class="content">
+                                                            <h3>{{ carItem.name }}</h3>
+                                                            <p>{{ carItem.description }}</p>
+                                                            <ul>
+                                                                <li class="text-color">{{ carItem.user_price }}</li>
+                                                            </ul>
+                                                            <router-link to="/car/details" class="book-btn">تفاصيل السيارة</router-link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Trains -->
+                        <div class="tabs_item" style="">
+                            <div class="reservation-tab-item">
+                                <div class="row">
+                                    <div class="col-lg-10">
+                                        <div class="reservation-widget-content">
+                                            <h2>مدن القطارات</h2>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6" v-for="(trainItem, index) in trainItems" :key="index">
+                                                    <div class="room-item reservation-room">
+                                                        <div class="content ">
+                                                            <h3>{{ trainItem.name }}</h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Airlines -->
+                        <div class="tabs_item" style="">
+                            <div class="reservation-tab-item">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="side-bar-form">
+                                            <h3>ابحث</h3>
+                                            <form>
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>اختر المدينة</label>
+                                                            <select v-model="citySelected"  class="form-control" >
+                                                                <option v-for="(cityItem, index) in cityItems" :key="index" v-bind:value="cityItem.id">{{ cityItem.name }}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <button type="submit" @click="carSearchSubmit"
+                                                            class="default-btn btn-bg-three border-radius-5">
+                                                            ابحث الان
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="reservation-widget-content">
+                                            <h2>نتائج البحث</h2>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6" v-for="(carItem, index) in carItems" :key="index">
+                                                    <div class="room-item reservation-room">
+                                                        <img :src="carItem.logo" alt="Images">
+                                                        <div class="content">
+                                                            <h3>{{ carItem.name }}</h3>
+                                                            <p>{{ carItem.description }}</p>
+                                                            <ul>
+                                                                <li class="text-color">{{ carItem.user_price }}</li>
+                                                            </ul>
+                                                            <router-link to="/car/details" class="book-btn">تفاصيل السيارة</router-link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,7 +261,10 @@
                 date: null,
                 cityItems: [],
                 hotelItems: [],
+                carItems: [],
+                trainItems: [],
                 citySelected: "",
+                
             };
         },
         computed: {
@@ -180,6 +300,13 @@
                 });
             },
             // ****************************
+            getAllTrains() {
+                axios.get(`https://vsa.2bill.net/api/users/train-cities`).then(
+                response => {
+                    this.trainItems = response.data.data;
+                });
+            },
+            // ****************************
             hotelSearchSubmit(e) {
                 e.preventDefault();
                 const city_id = this.citySelected;
@@ -190,12 +317,35 @@
                 response => {
                     this.hotelItems = response.data.data;
                     console.log(this.hotelItems);
+                    var i;
+                    for(i=0; i<this.hotelItems.length; i++){
+                        const hotelId = this.hotelItems[i].id;
+                        const hotelName = this.hotelItems[i].name;
+                        localStorage.setItem("hotelId", hotelId);
+                        localStorage.setItem("hotelName", hotelName);
+                        console.log(hotelId);
+                    };
                 });
             },
+            // ****************************
+            carSearchSubmit(e) {
+                e.preventDefault();
+                const city_id = this.citySelected;
+                axios.post(`https://vsa.2bill.net/api/users/search/get-cars`, {
+                    city_id
+                }).then(
+                response => {
+                    this.carItems = response.data.data;
+                    console.log(this.carImg);
+                });
+            },
+            // ****************************
+           
         },
         // Get All
         async created() {
             this.getAllCities();
+            this.getAllTrains();
         }
     };
 </script>

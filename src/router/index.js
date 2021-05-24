@@ -8,6 +8,8 @@ import CompanyLogin from "../views/CompanyLogin.vue";
 import CompanyRegister from "../views/CompanyRegister.vue";
 import HotelLogin from "../views/HotelLogin.vue";
 import HotelRegister from "../views/HotelRegister.vue";
+import HotelDetails from "../views/HotelDetails.vue";
+import RoomDetails from "../views/RoomDetails.vue";
 import PersonHome from "../views/PersonHome.vue";
 
 Vue.use(VueRouter);
@@ -56,6 +58,16 @@ const routes = [{
         path: "/hotel/register",
         name: "HotelRegister",
         component: HotelRegister
+    },
+    {
+        path: "/hotel/details",
+        name: "HotelDetails",
+        component: HotelDetails
+    },
+    {
+        path: "/hotel/room-details",
+        name: "RoomDetails",
+        component: RoomDetails
     }
 ];
 
