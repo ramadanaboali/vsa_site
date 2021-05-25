@@ -29,18 +29,19 @@
                   <span class="sp-color">تسجيل الدخول</span>
                   <h2>تسجيل الدخول إلى حسابك!</h2>
                 </div>
-                <form id="contactForm">
+                <form id="hLoginFrm">
                   <div class="row">
                     <div class="col-lg-12 ">
                       <div class="form-group">
                         <input
                           type="text"
-                          name="name"
+                          name="email"
+                          v-model="email"
                           id="name"
                           class="form-control"
                           required
                           data-error="Please enter your Username or Email"
-                          placeholder="Username or Email"
+                          placeholder="Email"
                         />
                       </div>
                     </div>
@@ -51,21 +52,15 @@
                           class="form-control"
                           type="password"
                           name="password"
+                          v-model="password"
+                          required
                           placeholder="Password"
                         />
                       </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6 form-condition">
-                      <div class="agree-label">
-                        <input type="checkbox" id="chb1" />
-                        <label for="chb1">
-                          تذكرني
-                        </label>
-                      </div>
-                    </div>
 
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-12 col-sm-12">
                       <router-link to="/hotel/forget-password" class="forget"
                         >هل نسيت كلمة السر؟!</router-link
                       >
@@ -73,13 +68,13 @@
 
                     <div class="col-lg-12 col-md-12 text-center">
                       <button
-                        type="submit"
+                        type="submit" @click="handleSubmit"
                         class="default-btn btn-bg-three border-radius-5"
                       >
                         تسجيل الدخول الان
                       </button>
                     </div>
-
+                    <b class="errMsg"> {{ errMsg }}</b>
                     <div class="col-12">
                       <p class="account-desc">
                         لست عضو؟
@@ -107,9 +102,40 @@ export default {
     Navbar
   },
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+      errMsg: ""
+    };
   },
-  methods: {}
+  methods: {
+    handleSubmit(e){
+      e.preventDefault()
+      if (this.password.length > 0) {
+        this.$http.post('https://vsa.2bill.net/api/hotels/auth/login', {
+            email: this.email,
+            password: this.password
+        })
+        .then(response => {
+          console.log(response.data.user.access_token);
+          const hotelToken = response.data.user.access_token;
+          const hotelId = response.data.user.id;
+          const hotelName = response.data.user.name;
+          localStorage.setItem("hotelToken", hotelToken);
+          localStorage.setItem("hotelId", hotelId);
+          localStorage.setItem("hotelName", hotelName);
+          this.$router.push("/hotel/home");
+          if(response.data.status == false ){
+            this.errMsg = response.data.msg;
+          }
+          
+        })
+        .catch(function (error) {
+            console.error(error.response);
+        });
+      }
+    }
+  }
 };
 </script>
 

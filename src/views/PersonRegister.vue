@@ -85,6 +85,7 @@
                           data-error="Please enter your mobile"
                           placeholder="mobile"
                         />
+                        
                       </div>
                     </div>
 
@@ -112,7 +113,7 @@
                         انشئ حساب جديد الان
                       </button>
                     </div>
-
+                    <b class="errMsg"> {{ errMsg }}</b>
                     <div class="col-12">
                       <p class="account-desc">
                         هل لديك حساب بالفعل؟
@@ -146,6 +147,7 @@ export default {
       password : "",
       mobile : "",
       address : "",
+      errMsg : "",
     };
   },
   methods : {
@@ -163,10 +165,10 @@ export default {
                 address: this.address
             })
             .then(response => {
-              console.log(response);
-            })
-            .catch(error => {
-              console.error(error);
+              if(response.data.status == false ){
+                this.errMsg = response.data.msg;
+                console.log(response.data.msg);
+              }
             });
         } 
     }

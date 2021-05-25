@@ -6412,3 +6412,26 @@ PreLoader CSS End
     background-color: #1B2132;
     color: #ffffff;
 }
+
+.logoutBtn {
+    background-color: #0c4522;
+    padding: 6px 18px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+    background-color: #1B2132;
+    color: #ffffff;
+}
+
+.errMsg {
+    color: red;
+    direction: ltr;
+    text-align: center;
+    display: block;
+    width: 50%;
+    float: none;
+    margin: auto;
+}

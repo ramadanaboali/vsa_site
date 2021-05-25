@@ -56,46 +56,14 @@
                       <a class="dropdown-item">
                         الصفحة الشخصية
                       </a>
-                      <a>
-                        تسجيل الخروج
-                      </a>
                     </div>
                   </div>
                 </div>
+                <!-- Logout -->
                 <div class="language-list">
-                  <div class="dropdown language-list-dropdown">
-                    <button
-                      class="btn dropdown-toggle"
-                      type="button"
-                      id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      اللغة
-                      <i class="bx bx-chevron-down"></i>
-                    </button>
-                    <div
-                      class="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                    >
-                      <a class="dropdown-item">
-                        <img
-                          src="../assets/img/language-flag/eng.png"
-                          alt="Images"
-                        />
-                        English
-                      </a>
-                      <a>
-                        <img
-                          src="../assets/img/language-flag/arabic.png"
-                          alt="Images"
-                        />
-                        اللغة العربية
-                      </a>
-                    </div>
-                  </div>
+                  <button class="btn logoutBtn" type="submit" @click="logoutSubmit">  تسجيل الخروج </button>
                 </div>
+                <!-- /Logout -->
               </div>
             </div>
           </div>
@@ -195,7 +163,13 @@ export default {
       });
     });
   },
-  methods: {}
+  methods: {
+    logoutSubmit(e){
+      e.preventDefault();
+      localStorage.clear();
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

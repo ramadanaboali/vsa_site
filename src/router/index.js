@@ -11,6 +11,7 @@ import HotelRegister from "../views/HotelRegister.vue";
 import HotelDetails from "../views/HotelDetails.vue";
 import RoomDetails from "../views/RoomDetails.vue";
 import PersonHome from "../views/PersonHome.vue";
+import HotelHome from "../views/HotelHome.vue";
 
 Vue.use(VueRouter);
 
@@ -68,6 +69,11 @@ const routes = [{
         path: "/hotel/room-details",
         name: "RoomDetails",
         component: RoomDetails
+    },
+    {
+        path: "/hotel/home",
+        name: "HotelHome",
+        component: HotelHome
     }
 ];
 

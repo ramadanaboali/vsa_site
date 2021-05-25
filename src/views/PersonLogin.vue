@@ -41,7 +41,7 @@
                           class="form-control"
                           required
                           data-error="Please enter your Username or Email"
-                          placeholder="Username or Email"
+                          placeholder="Email"
                         />
                       </div>
                     </div>
@@ -58,16 +58,9 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-6 col-sm-6 form-condition">
-                      <div class="agree-label">
-                        <input type="checkbox" id="chb1" />
-                        <label for="chb1">
-                          تذكرني
-                        </label>
-                      </div>
-                    </div>
+                    
 
-                    <div class="col-lg-6 col-sm-6">
+                    <div class="col-lg-12 col-sm-12">
                       <router-link to="/hotel/forget-password" class="forget"
                         >هل نسيت كلمة السر؟!</router-link
                       >
